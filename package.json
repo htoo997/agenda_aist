@@ -1,6 +1,6 @@
 {
   "name": "agendash_aist",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A modern dashboard for Agenda.js with Pagination and Search capabilities",
   "main": "app.js",
   "bin": {
@@ -22,12 +22,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agenda/agendash.git"
+    "url": "git+https://github.com/htoo997/agenda_aist.git"
   },
   "bugs": {
     "url": "https://github.com/agenda/agendash/issues"
   },
-  "homepage": "https://github.com/agenda/agendash#readme",
+  "homepage": "https://github.com/htoo997/agenda_aist#readme",
   "license": "MIT",
   "files": [
     "bin",

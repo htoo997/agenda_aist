@@ -4,17 +4,10 @@ A Dashboard for [Agenda](https://github.com/agenda/agenda). Note: It is a copy f
 
 ---
 
-### Features
+### Amendments
 
-- Job status auto-refreshes: 60-second polling by default.
-- Schedule a new job from the UI.
-- Dive in to see more details about the job, like the json data.
-- Requeue a job. Clone the data and run immediately.
-- Delete jobs. Useful for cleaning up old completed jobs.
-- Search jobs by name and metadata. Supports querying by Mongo Object Id.
-- Pagination
-- Responsive UI
-
+- Fix Modal Not closing after submit
+- Minor UI Changes
 ---
 
 ### Screenshots
