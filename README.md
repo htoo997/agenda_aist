@@ -1,6 +1,6 @@
-# Agendash
+# Agendash_AIST
 
-A Dashboard for [Agenda](https://github.com/agenda/agenda).
+A Dashboard for [Agenda](https://github.com/agenda/agenda). Note: It is a copy from [Agendash](https://www.npmjs.com/package/agendash).
 
 ---
 
@@ -21,65 +21,35 @@ A Dashboard for [Agenda](https://github.com/agenda/agenda).
 
 #### Dashboard
 
-![Auto-refresh list of jobs](all-jobs.png)
+![Auto-refresh list of jobs](dashboard.png)
 
 ---
 
 #### Create jobs
 
-![See job details, requeue or delete jobs](create-job.png)
+![See job details, requeue or delete jobs](create.png)
 
 ---
 
 #### Search by name, metadata, job status
 
-![Search for a job by name or metadata ](search.png)
+![Search for a job by name or metadata ](searching.png)
 
 ---
-
-#### Responsive UI
-
-![Mobile UI small devices](mobile-ui-sm.png)
-
-![Mobile UI extra small devices](mobile-ui-xs.png)
-
----
-
-# Troubleshooting
-
-### Index for sorting
-
-It may be required to create the following index for faster sorting (see [#24](https://github.com/agenda/agendash/issues/24))
-
-```
-db.agendaJobs.ensureIndex({
-    "nextRunAt" : -1,
-    "lastRunAt" : -1,
-    "lastFinishedAt" : -1
-}, "agendash")
-```
-
----
-
-# Roadmap
-
-- [ ] Get more test coverage
-- [ ] Add middlewares for fastify, and other express-like libraries
-- [ ] You decide! Submit a feature request
 
 ### Install
 
 ```
-npm install --save agendash
+npm install --save agendash_aist
 ```
 
-_Note_: `Agendash` requires mongodb version >2.6.0 to perform the needed aggregate queries. This is your mongo database version, not your node package version! To check your database version, connect to mongo and run `db.version()`.
+_Note_: `Agendash_aist` requires mongodb version >2.6.0 to perform the needed aggregate queries. This is your mongo database version, not your node package version! To check your database version, connect to mongo and run `db.version()`.
 
 ### Middleware usage
 
 #### Express
 
-Agendash provides Express middleware you can use at a specified path, for example this will
+Agendash_aist provides Express middleware you can use at a specified path, for example this will
 make Agendash available on your site at the `/dash` path. Note: Do not try to mount Agendash
 at the root level like `app.use('/', Agendash(agenda))`.
 
@@ -90,11 +60,18 @@ var app = express();
 // ... your other express middleware like body-parser
 
 var Agenda = require("agenda");
-var Agendash = require("agendash");
+var Agendash = require("agendash_aist");
 
 var agenda = new Agenda({ db: { address: "mongodb://127.0.0.1/agendaDb" } });
 // or provide your own mongo client:
 // var agenda = new Agenda({mongo: myMongoClient})
+agenda.define('<your-task-name>', async (job) => {
+  const metadata = job.attrs.data; // Access the metadata within the job function
+  console.log('Job triggered with metadata:', metadata);
+  // Add your job logic here
+});
+
+agenda.start();
 
 app.use("/dash", Agendash(agenda));
 
@@ -135,88 +112,13 @@ app.use(
 
 Note that if you use a CSRF protection middleware like [`csurf`](https://www.npmjs.com/package/csurf), you might need to [configure it off](https://github.com/agenda/agendash/issues/23#issuecomment-270917949) for Agendash-routes.
 
-#### Hapi
-
-A minimum Node.js version 12 is required for `@hapi/hapi` dependency.
-
-```shell
-npm i @hapi/inert @hapi/hapi
-```
+### Set Failed Status
 
 ```js
-const agenda = new Agenda().database(
-  "mongodb://127.0.0.1/agendaDb",
-  "agendaJobs"
-);
-
-const server = require("@hapi/hapi").server({
-  port: 3002,
-  host: "localhost",
+agenda.define('<your-task-name>', async (job) => {
+  throw new Error('Some Error Message')
 });
-await server.register(require("@hapi/inert"));
-await server.register(
-  Agendash(agenda, {
-    middleware: "hapi",
-  })
-);
-
-await server.start();
 ```
-
-Then browse to `http://localhost:3002/`.
-
-#### Koa
-
-```shell
-npm i koa koa-bodyparser koa-router koa-static
-```
-
-```js
-const agenda = new Agenda().database(
-  "mongodb://127.0.0.1/agendaDb",
-  "agendaJobs"
-);
-
-const Koa = require("koa");
-const app = new Koa();
-const middlewares = Agendash(agenda, {
-  middleware: "koa",
-});
-for (const middleware of middlewares) {
-  app.use(middleware);
-}
-
-await app.listen(3002);
-```
-
-Then browse to `http://localhost:3002/`.
-
-#### Fastify
-
-```shell
-npm i fastify
-```
-
-```js
-const agenda = new Agenda().database(
-  "mongodb://127.0.0.1/agendaDb",
-  "agendaJobs"
-);
-
-const Fastify = require("fastify");
-const fastify = new Fastify();
-
-fastify.register(
-  Agendash(
-    agenda, 
-    { middleware: "fastify" }
-  );
-);
-
-await fastify.listen(3002);
-```
-
-Then browse to `http://localhost:3002/`.
 
 ### Standalone usage
 

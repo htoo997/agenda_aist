@@ -1,6 +1,6 @@
 {
-  "name": "@htoo997/agendash_aist",
-  "version": "1.0.0",
+  "name": "agendash_aist",
+  "version": "1.0.3",
   "description": "A modern dashboard for Agenda.js with Pagination and Search capabilities",
   "main": "app.js",
   "bin": {
@@ -78,5 +78,5 @@
     "lib": "lib",
     "test": "test"
   },
-  "author": "htoo"
+  "author": "htoominshein"
 }

@@ -17,7 +17,7 @@ const newJob = Vue.component("new-job", {
     },
     create() {
       const url = `api/jobs/create`;
-
+      let that = this;
       let jobData = "";
       try {
         jobData = JSON.parse(this.jobData);
@@ -38,7 +38,7 @@ const newJob = Vue.component("new-job", {
         .then((data) => {
           this.$emit("popup-message");
           this.$emit("refresh-data");
-          this.$refs.Close.click();
+          $('#modalNewJob').modal('hide');
           this.clear();
         })
         .catch(console.log);
@@ -73,7 +73,7 @@ const newJob = Vue.component("new-job", {
               </div>
               <div class="form-group">
                 <label for="jobData">Job Metadata</label>
-                <prism-editor class="json-editor" :lineNumbers="true" v-model="jobData" language="json"></prism-editor>
+                <prism-editor class="json-editor" :lineNumbers="true" v-model="jobData" language="json" ></prism-editor>
                 <small class="form-text text-muted">{{jobDataParseError}}</small>
               </div>
             </form>

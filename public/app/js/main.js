@@ -199,10 +199,10 @@ const app = Vue.component("app", {
 
     <div class="container-fluid">
       <div class="">
-        <div class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <div class="navbar navbar-dark fixed-top bgDarkBlue flex-md-nowrap p-0 shadow">
           <div class="d-flex">
             <div>
-              <a class="navbar-brand col-sm-10 col-md-10 mr-0 tittle"> Agendash</a>
+              <a class="navbar-brand col-sm-10 col-md-10 mr-0 tittle"> Agendash AIST</a>
             </div>
             <div class='d-md-none w-50'>
               <div id="mySidebar" class="sidebar-collapse" @click="closeNav()">
@@ -266,9 +266,10 @@ const app = Vue.component("app", {
             </div>
           </main>
       </div>
-      <div class="row bg-dark py-3">
+      <div class="row bgDarkBlue py-3">
         <div class="col-6 m-auto text-light text-center">
-          <small>Backend by Agenda team.</small>
+        
+          <small> Backend by Agenda team.</small>
         </div>
       </div>
       <job-detail v-if="showDetail" v-bind:job="jobData"></job-detail>
