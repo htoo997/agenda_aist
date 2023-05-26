@@ -1,6 +1,6 @@
 {
   "name": "agendash_aist",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A modern dashboard for Agenda.js with Pagination and Search capabilities",
   "main": "app.js",
   "bin": {
