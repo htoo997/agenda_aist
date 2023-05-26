@@ -8,6 +8,7 @@ A Dashboard for [Agenda](https://github.com/agenda/agenda). Note: It is a copy f
 
 - Fix Modal Not closing after submit
 - Minor UI Changes
+- Can Add Notes
 ---
 
 ### Screenshots
@@ -27,6 +28,14 @@ A Dashboard for [Agenda](https://github.com/agenda/agenda). Note: It is a copy f
 #### Search by name, metadata, job status
 
 ![Search for a job by name or metadata ](searching.png)
+
+---
+
+#### Adding Notes
+
+![Add note inside json ](note.png)
+
+![Add note inside json ](note2.png)
 
 ---
 
